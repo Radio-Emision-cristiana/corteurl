@@ -1,0 +1,28 @@
+{
+  "name": "pinlink",
+  "version": "1.0.0",
+  "description": "Acortador de URLs con autenticación PIN",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node src/app.js",
+    "build": "npx prisma generate",
+    "postinstall": "npx prisma generate",
+    "db:push": "npx prisma db push",
+    "db:migrate": "npx prisma migrate deploy"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.3",
+    "nanoid": "^3.3.7"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0"
+  }
+}

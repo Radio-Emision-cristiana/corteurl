@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinLink - Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+        <h1>PinLink</h1>
+      </div>
+
+      <p class="subtitle">Ingresa tu PIN de acceso</p>
+
+      <% if (error) { %>
+        <div class="error-message">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span><%= error %></span>
+        </div>
+      <% } %>
+
+      <form action="/login" method="POST" class="login-form">
+        <div class="input-group">
+          <input
+            type="password"
+            name="pin"
+            id="pin"
+            maxlength="6"
+            pattern="[0-9]{6}"
+            placeholder="******"
+            required
+            autofocus
+            autocomplete="off"
+          >
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Entrar</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="M12 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </form>
+
+      <p class="footer-text">Sistema seguro de acortamiento de URLs</p>
+    </div>
+  </div>
+
+  <script>
+    // Auto-focus on PIN input and restrict to numbers only
+    const pinInput = document.getElementById('pin');
+
+    pinInput.addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    pinInput.focus();
+
+    // Submit form on 6 digits
+    pinInput.addEventListener('input', function() {
+      if (this.value.length === 6) {
+        this.form.submit();
+      }
+    });
+  </script>
+</body>
+</html>
